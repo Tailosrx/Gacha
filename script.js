@@ -3,7 +3,7 @@ const creatures = [
   { name: "Cristal", rarity: "legendary", image: "assets/cristal.png" },
   { name: "Lolo", rarity: "epic", image: "assets/lolo.png" },
   { name: "Misterio", rarity: "rare", image: "assets/misterio.png" },
-  { name: "Lily", rarity: "legendary", image: "assets/lily.jpg" },
+  { name: "Lily", rarity: "legendary", image: "assets/lily.png" },
   { name: "Waxy", rarity: "common", image: "assets/goblin.png" },
   { name: "Tarko", rarity: "uncommon", image: "assets/tarko.png" },
   { name: "Will", rarity: "uncommon", image: "assets/will.png" },
