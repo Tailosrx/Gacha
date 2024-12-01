@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gacha de Criaturas Fantásticas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Gacha de Criaturas Fantásticas</h1>
+    <nav>
+      <button onclick="showSection('gacha')">Gachapon</button>
+      <button onclick="showSection('encyclopedia')">Enciclopedia</button>
+      <button onclick="showSection('story')">Modo Historia</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Gacha -->
+    <section id="gacha">
+      <h2>Gachapon</h2>
+      <div class="card-container"></div>
+      <button onclick="summonCards()">Tirar 3 cartas</button>
+    </section>
+
+    <!-- Enciclopedia -->
+    <section id="encyclopedia" class="hidden">
+      <h2>Enciclopedia</h2>
+      <div class="encyclopedia-container"></div>
+    </section>
+
+    <!-- Modo Historia -->
+    <section id="story" class="hidden">
+      <h2>Modo Historia</h2>
+      <div id="map">
+        <!-- Niveles -->
+        <div class="level" onclick="startLevel(1)">Capítulo 1</div>
+        <div class="level locked" onclick="startLevel(2)">Capítulo 2</div>
+        <div class="level locked" onclick="startLevel(3)">Capítulo 3</div>
+      </div>
+      <div id="story-content" class="hidden">
+        <p id="story-text">Bienvenido al modo historia.</p>
+        <button onclick="nextChallenge()">Continuar</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
