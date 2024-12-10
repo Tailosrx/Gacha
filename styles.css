@@ -1,233 +1,226 @@
-/* General */
-body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #1e1e1e, #292929);
-  color: #ffffff;
+html, body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  height: 100%;
+  color: white;
   text-align: center;
 }
 
-h1, h2 {
-  font-weight: bold;
-  color: #ffcc00;
-  text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900;
+header {
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color:#082647;
 }
 
-button {
-  background-color: #ffcc00;
-  color: #1e1e1e;
+header h1 {
+  margin: 0;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav button {
+  margin: 5px;
+  padding: 10px 15px;
+  background: #34495e;
+  color: white;
   border: none;
-  padding: 8px 16px;
-  font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s;
 }
 
-button:hover {
-  background-color: #ff9900;
-  transform: scale(1.05);
+nav button:hover {
+  background: #2ecc71;
+}
+main{
+  background-color:#355579;
+  height: 100%;
+}
+
+main section {
+  padding: 20px;
 }
 
 .hidden {
   display: none;
 }
 
-/* Gachapón */
 .card-container {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin: 10px auto;
   flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .card {
-  background: #202020;
-  border: 2px solid #555;
-  border-radius: 8px;
-  width: 120px;
-  padding: 10px;
+  background: #2c3e50;
+  border-radius: 10px;
+  padding: 15px;
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.card img {
+  max-width: 100px;
+  border-radius: 5px;
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(255, 204, 0, 0.3);
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 5px;
 }
 
 .card-name {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #ffcc00;
-  text-shadow: 0 0 3px #ffcc00, 0 0 5px #ff9900;
+  font-size: 1.2em;
+  margin: 10px 0;
 }
 
 .card-rarity {
-  font-size: 0.9rem;
-  font-style: italic;
+  font-size: 0.9em;
   text-transform: uppercase;
-  color: #aaa;
-  margin-top: 3px;
 }
 
-/* Rareza */
-.legendary {
-  border: 2px solid gold;
-  background: linear-gradient(135deg, #ffcc00, #ff9900);
-  color: white;
+.card.common {
+  background: #bdc3c7;
+  color: #2c3e50;
 }
 
-.epic {
-  border: 2px solid purple;
-  background: linear-gradient(135deg, #8a2be2, #5a189a);
-  color: white;
+/*
+
+mision diaria con recompensa (pensar como coño se juega)
+moneda de juego (economia)
+filtros en la enciclopedia
+JUICYYYYYYY 
+
+*/
+
+.card.uncommon {
+  background: #8e44ad;
 }
 
-.rare {
-  border: 2px solid blue;
-  background: linear-gradient(135deg, #1e90ff, #0d47a1);
-  color: white;
+.card.rare {
+  background: #2980b9;
 }
 
-.uncommon {
-  border: 2px solid green;
-  background: linear-gradient(135deg, #32cd32, #228b22);
-  color: white;
+.card.epic {
+  background: #e74c3c;
 }
 
-.common {
-  border: 2px solid gray;
-  background: linear-gradient(135deg, #dcdcdc, #a9a9a9);
-  color: #333;
+.card.legendary {
+  background: #f1c40f;
+  color: #2c3e50;
+  font-weight: bold;
 }
 
-/* Enciclopedia */
 .encyclopedia-container {
-  width: 90%;
-  max-width: 800px;
-  margin: 10px auto;
-  padding: 10px;
-  background: linear-gradient(135deg, #111, #222);
-  border-radius: 10px;
-  border: 3px solid #333;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  color: #ffffff;
-}
-
-.encyclopedia-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.encyclopedia-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 15px;
-  padding: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
-.encyclopedia-entry {
-  background: #1c1c1c;
-  border: 2px solid #444;
+.encyclopedia-container .card {
+  background-color: #fff;
   border-radius: 8px;
-  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.encyclopedia-entry:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(255, 204, 0, 0.3);
-}
-
-.encyclopedia-entry img {
+  padding: 8px;
   width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 5px;
+  max-width: 120px; 
 }
 
-.encyclopedia-entry .entry-name {
-  font-size: 1rem;
+.card img {
+  width: 80px; 
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.card-name {
+  font-size: 14px;
   font-weight: bold;
-  color: #ffcc00;
-  text-shadow: 0 0 3px #ffcc00, 0 0 5px #ff9900;
+  margin-bottom: 4px;
 }
 
-.encyclopedia-entry .entry-rarity {
-  font-size: 0.9rem;
-  font-style: italic;
-  text-transform: uppercase;
-  color: #aaa;
-  margin-top: 3px;
+.card-rarity {
+  font-size: 12px;
+  color: #000000;
 }
 
-/* Animación */
-.card-reveal {
-  opacity: 0;
-  transform: scale(0.9);
-  animation: fadeIn 0.5s forwards ease-in-out;
-}
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Adaptaciones para móviles */
-@media (max-width: 600px) {
-  .card-container {
-    flex-direction: column;
-  }
-
-  .encyclopedia-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-}
-
-/* Estilo del mapa */
 #map {
   display: flex;
-  gap: 10px;
   justify-content: center;
-  margin: 20px 0;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .level {
-  padding: 10px 20px;
-  background-color: #6c63ff;
-  color: white;
+  padding: 15px;
+  background: #7f8c8d;
   border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: background 0.3s;
+}
+
+.level:hover {
+  background: #1abc9c;
 }
 
 .level.locked {
-  background-color: #aaa;
+  background: #34495e;
   cursor: not-allowed;
 }
 
-.level:hover:not(.locked) {
-  transform: scale(1.1);
+#story-content {
+  margin-top: 20px;
+  padding: 15px;
+  background: #2c3e50;
+  border-radius: 10px;
 }
 
-/* Contenido de la narrativa */
-#story-content {
-  text-align: center;
-  margin: 20px auto;
+
+#special-effects {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 255, 0, 0.5), rgba(255, 0, 0, 0));
+  border-radius: 50%;
+  z-index: 1000;
+  display: none;
+}
+
+#special-effects.visible {
+  display: block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
 }
