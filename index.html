@@ -1,32 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gacha Game</title>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script defer src="script.js"></script>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <h1>Gacha Game</h1>
-  </header>
-  <main>
-    <section id="map">
-      <button id="pull-button">Tirar Cartas</button>
-      <div id="particles-js"></div>
-      <div class="card-container"></div>
-    </section>
-    <section id="encyclopedia" class="hidden">
-      <h2>Enciclopedia</h2>
-      <div class="encyclopedia-container"></div>
-    </section>
-    <section id="story-content" class="hidden">
-      <h2>Modo Historia</h2>
-      <p id="story-text"></p>
-      <button onclick="nextChallenge()">Siguiente</button>
-    </section>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gacha Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Gacha Game</h1>
+      <nav>
+        <button onclick="showSection('map')">Tiradas</button>
+        <button onclick="showSection('encyclopedia')">Enciclopedia</button>
+        <button onclick="showSection('story-content')">Modo Historia</button>
+      </nav>
+    </header>
+    <main>
+      <!-- Sección del mapa con el gacha -->
+      <section id="map">
+        <button id="pull-button">Tirar Cartas</button>
+        <div id="particles-js"></div>
+        <div class="card-container"></div>
+      </section>
+
+      <!-- Sección de la enciclopedia -->
+      <section id="encyclopedia" class="hidden">
+        <h2>Enciclopedia</h2>
+        <div class="encyclopedia-container"></div>
+      </section>
+
+      <!-- Sección para mostrar los detalles de la carta -->
+      <section id="card-details" class="hidden">
+        <h2 id="deta">Detalles de la Carta</h2>
+        <button onclick="showSection('encyclopedia')">Volver a Tiradas</button>
+        <div id="card-info">
+          <img id="card-image" src="" alt="Imagen de la carta" />
+          <div id="card-description">
+            <h3 id="card-name"></h3>
+            <p id="card-rarity"></p>
+            <p id="card-collection"></p>
+            <p id="card-story"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección del modo historia -->
+      <section id="story-content" class="hidden">
+        <h2>Modo Historia</h2>
+        <p id="story-text">
+          Bienvenido al modo historia. ¡Comienza tu aventura!
+        </p>
+        <img src="map/map_Duramesh.png" id="mapa" alt="Mapa de Duramesh" />
+        <button onclick="nextChallenge()">Siguiente</button>
+      </section>
+    </main>
+  </body>
 </html>

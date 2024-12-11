@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+
 html, body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -16,6 +19,11 @@ header {
 header h1 {
   margin: 0;
 }
+
+.hidden {
+  display: none;
+}
+
 
 nav {
   margin-top: 10px;
@@ -43,6 +51,26 @@ main{
 main section {
   padding: 20px;
 }
+
+section {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+section.hidden {
+  opacity: 0;
+}
+
+#mapa{
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 .hidden {
   display: none;
@@ -79,10 +107,6 @@ main section {
   margin: 10px 0;
 }
 
-.card-rarity {
-  font-size: 0.9em;
-  text-transform: uppercase;
-}
 
 .card.common {
   background: #bdc3c7;
@@ -117,22 +141,104 @@ JUICYYYYYYY
 }
 
 .encyclopedia-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  padding: 20px;
-  margin-top: 20px;
+  display: flex;
+	flex-wrap: wrap;
+	align-items: space-between;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: 1200px;
 }
 
 .encyclopedia-container .card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  padding: 8px;
-  width: 100%;
-  max-width: 120px; 
+	border-radius: 20px;
+	box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+	margin: 10px;
+	padding: 20px;
+	text-align: center;
 }
+
+#card-details {
+  padding: 30px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 40px auto;
+  transition: background-color 0.3s ease; /* Transición para el cambio de fondo */
+}
+
+#card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+#card-info img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 3px solid #ddd;
+}
+
+#card-description {
+  max-width: 550px;
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+}
+
+#deta{
+  color: #082647;
+  font-weight: 500;
+}
+
+#card-description h3 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#card-description p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+#card-description p strong {
+  font-weight: bold;
+}
+
+#card-rarity {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #f39c12;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#card-collection {
+  font-size: 1.2em;
+  color: #2980b9;
+  margin-top: 10px;
+}
+
+#card-story {
+  font-size: 1.1em;
+  font-style: italic;
+  color: #34495e;
+}
+
+button:focus {
+  outline: none;
+}
+
 
 .card img {
   width: 80px; 
@@ -222,5 +328,28 @@ JUICYYYYYYY
 @keyframes fadeOut {
   to {
     opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #map {
+    width: 80%; 
+    max-width: 100%;
+  }
+
+  #particles-js {
+    height: 200px; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  #map {
+    width: 90%;
+    padding: 10px; 
+  }
+
+  #particles-js {
+    height: 150px; 
   }
 }

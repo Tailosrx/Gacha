@@ -1,23 +1,22 @@
 const creatures = [
-  { name: "Cristal", rarity: "legendary", image: "assets/cristal.png" },
-  { name: "Huevo Dorado", rarity: "legendary", image: "assets/egg.png" },
-  { name: "Lolo", rarity: "epic", image: "assets/lolo.png" },
-  { name: "Misterio", rarity: "rare", image: "assets/misterio.png" },
-  { name: "Lily", rarity: "rare", image: "assets/lily.png" },
-  { name: "Dionis", rarity: "rare", image: "assets/dionis.png" },
-  { name: "Tarko", rarity: "uncommon", image: "assets/tarko.png" },
-  { name: "Will", rarity: "uncommon", image: "assets/will.png" },
-  { name: "Waxy Funeral", rarity: "uncommon", image: "assets/goblin.png" },
-  { name: "Eustaquio", rarity: "uncommon", image: "assets/draco.png" },
-  { name: "Kijon III", rarity: "common", image: "assets/kijon.png" },
-  { name: "Waxy", rarity: "common", image: "assets/waxy.png" },
-  { name: "Tetico", rarity: "common", image: "assets/tetico.png" },
-  { name: "Joy", rarity: "common", image: "assets/joy.png" }
+  { name: "Cristal", rarity: "legendary", image: "assets/cristal.png", collection: "Destellos"},
+  { name: "Huevo Dorado", rarity: "legendary", image: "assets/egg.png", collection: "Recordando a Waxy" },
+  { name: "Lolo", rarity: "epic", image: "assets/lolo.png", collection: "La Leyenda de Thunder" },
+  { name: "Misterio", rarity: "rare", image: "assets/misterio.png", collection: "La Leyenda de Thunder" },
+  { name: "Lily", rarity: "rare", image: "assets/lily.png", collection: "La Leyenda de Thunder" },
+  { name: "Dionis", rarity: "rare", image: "assets/dionis.png", collection: "Uno con la Libertad" },
+  { name: "Tarko", rarity: "uncommon", image: "assets/tarko.png", collection: "La Leyenda de Thunder"},
+  { name: "Will", rarity: "uncommon", image: "assets/will.png", collection: "La Leyenda de Thunder"  },
+  { name: "Waxy Funeral", rarity: "uncommon", image: "assets/goblin.png", collection: "Recordando a Waxy"  },
+  { name: "Eustaquio", rarity: "uncommon", image: "assets/draco.png", collection: "La Leyenda de Thunder" },
+  { name: "Kijon III", rarity: "common", image: "assets/kijon.png", collection: "La Leyenda de Thunder"  },
+  { name: "Waxy", rarity: "common", image: "assets/waxy.png", collection: "Recordando a Waxy"  },
+  { name: "Tetico", rarity: "common", image: "assets/tetico.png", collection: "Recordando a Waxy" },
+  { name: "Joy", rarity: "common", image: "assets/joy.png", collection: "Cuna de la Esperanza"  }
 ];
 
 const encyclopedia = [];
 
-// Función para mostrar secciones
 function showSection(section) {
   const sections = document.querySelectorAll('main section');
   sections.forEach(sec => sec.classList.add('hidden'));
@@ -25,6 +24,53 @@ function showSection(section) {
   const activeSection = document.getElementById(section);
   activeSection.classList.remove('hidden');
 }
+
+function showCardDetails(creature) {
+  showSection('card-details');
+
+  // Obtener elementos de la carta
+  const cardImage = document.getElementById('card-image');
+  const cardName = document.getElementById('card-name');
+  const cardRarity = document.getElementById('card-rarity');
+  const cardCollection = document.getElementById('card-collection');
+  const cardStory = document.getElementById('card-story');
+  const cardDetailsSection = document.getElementById('card-details');
+
+  // Establecer los valores de los detalles de la carta
+  cardImage.src = creature.image;
+  cardName.textContent = creature.name;
+  cardRarity.textContent = `Rareza: ${creature.rarity.charAt(0).toUpperCase() + creature.rarity.slice(1)}`;
+  cardCollection.textContent = `Colección: ${creature.collection}`;
+  cardStory.textContent = creature.story;
+
+  // Cambiar el fondo según la rareza
+  cardDetailsSection.classList.remove('.card.common', '.card.uncommon', '.card.rare', '.card.epic', '.card.legendary'); // Eliminar clases previas
+  cardDetailsSection.classList.add(creature.rarity); // Añadir la clase según la rareza
+}
+
+
+function displayCardsInEncyclopedia() {
+  const encyclopediaContainer = document.querySelector(".encyclopedia-container");
+  
+  cards.forEach(card => {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+    cardElement.innerHTML = `
+      <img src="${card.image}" alt="${card.name}">
+      <div class="card-name">${card.name}</div>
+      <div class="card-rarity">${card.rarity}</div>
+    `;
+    
+    // Añadir evento al hacer clic en la carta
+    cardElement.addEventListener('click', () => showCardDetails(card));
+    
+    encyclopediaContainer.appendChild(cardElement);
+  });
+}
+
+window.onload = () => {
+  displayCardsInEncyclopedia();
+};
 
 // Función para seleccionar una carta aleatoria
 function gachaPull() {
@@ -166,6 +212,7 @@ function updateEncyclopedia() {
       <div class="card-name">${creature.name}</div>
       <div class="card-rarity">${creature.rarity.toUpperCase()}</div>
     `;
+    card.addEventListener("click", () => showCardDetails(creature));
     container.appendChild(card);
   });
 }
