@@ -1,21 +1,4 @@
-const creatures = [
-  { name: "Cristal", rarity: "legendary", image: "assets/cristal.png", collection: "Destellos"},
-  { name: "Huevo Dorado", rarity: "legendary", image: "assets/egg.png", collection: "Recordando a Waxy" },
-  { name: "Lolo", rarity: "epic", image: "assets/lolo.png", collection: "La Leyenda de Thunder" },
-  { name: "Misterio", rarity: "rare", image: "assets/misterio.png", collection: "La Leyenda de Thunder" },
-  { name: "Lily", rarity: "rare", image: "assets/lily.png", collection: "La Leyenda de Thunder" },
-  { name: "Dionis", rarity: "rare", image: "assets/dionis.png", collection: "Uno con la Libertad" },
-  { name: "Tarko", rarity: "uncommon", image: "assets/tarko.png", collection: "La Leyenda de Thunder"},
-  { name: "Will", rarity: "uncommon", image: "assets/will.png", collection: "La Leyenda de Thunder"  },
-  { name: "Waxy Funeral", rarity: "uncommon", image: "assets/goblin.png", collection: "Recordando a Waxy"  },
-  { name: "Eustaquio", rarity: "uncommon", image: "assets/draco.png", collection: "La Leyenda de Thunder" },
-  { name: "Kijon III", rarity: "common", image: "assets/kijon.png", collection: "La Leyenda de Thunder"  },
-  { name: "Waxy", rarity: "common", image: "assets/waxy.png", collection: "Recordando a Waxy"  },
-  { name: "Tetico", rarity: "common", image: "assets/tetico.png", collection: "Recordando a Waxy" },
-  { name: "Joy", rarity: "common", image: "assets/joy.png", collection: "Cuna de la Esperanza"  }
-];
 
-const encyclopedia = [];
 
 function showSection(section) {
   const sections = document.querySelectorAll('main section');
@@ -25,16 +8,62 @@ function showSection(section) {
   activeSection.classList.remove('hidden');
 }
 
+const encyclopedia = [];
+
+let creatures = []; // Definir 'creatures' fuera de cualquier función para usarla globalmente
+
+// Cargar el archivo JSON
+function loadCards() {
+  fetch("data/cards.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error al cargar el JSON: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      creatures = data; // Almacena las cartas directamente en creatures
+      console.log("Cartas cargadas correctamente:", creatures);
+      displayCardsInEncyclopedia(); // Actualiza la enciclopedia una vez cargadas las cartas
+    })
+    .catch(error => {
+      console.error("Error al cargar las cartas:", error);
+    });
+}
+  
+
+function displayCardsInEncyclopedia() {
+  const encyclopediaContainer = document.querySelector(".encyclopedia-container");
+  encyclopediaContainer.innerHTML = ""; // Limpiar el contenedor
+
+  creatures.forEach((card) => {
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+    cardElement.innerHTML = `
+      <img src="${card.image}" alt="${card.name}">
+      <div class="card-name">${card.name}</div>
+      <div class="card-rarity">${card.rarity}</div>
+    `;
+    cardElement.addEventListener("click", () => showCardDetails(card));
+    encyclopediaContainer.appendChild(cardElement);
+  });
+}
+
+window.onload = () => {
+  displayCardsInEncyclopedia();
+};
+
 function showCardDetails(creature) {
-  showSection('card-details');
+  showSection("card-details");
 
   // Obtener elementos de la carta
-  const cardImage = document.getElementById('card-image');
-  const cardName = document.getElementById('card-name');
-  const cardRarity = document.getElementById('card-rarity');
-  const cardCollection = document.getElementById('card-collection');
-  const cardStory = document.getElementById('card-story');
-  const cardDetailsSection = document.getElementById('card-details');
+  const cardBackground = document.getElementById("card-details");
+  const cardImage = document.getElementById("card-image");
+  const cardName = document.getElementById("card-name");
+  const cardRarity = document.getElementById("card-rarity");
+  const cardCollection = document.getElementById("card-collection");
+  const cardStory = document.getElementById("card-story");
+  const cardCollectionCards = document.getElementById("card-collection-cards");
 
   // Establecer los valores de los detalles de la carta
   cardImage.src = creature.image;
@@ -43,34 +72,53 @@ function showCardDetails(creature) {
   cardCollection.textContent = `Colección: ${creature.collection}`;
   cardStory.textContent = creature.story;
 
-  // Cambiar el fondo según la rareza
-  cardDetailsSection.classList.remove('.card.common', '.card.uncommon', '.card.rare', '.card.epic', '.card.legendary'); // Eliminar clases previas
-  cardDetailsSection.classList.add(creature.rarity); // Añadir la clase según la rareza
-}
+  const rarityColors = {
+    uncommon: "#8e44ad",
+    rare: "#2980b9",
+    epic: "red",
+    legendary: "yellow",
+    default: "white",
+  };
+  cardBackground.style.backgroundColor = rarityColors[creature.rarity] || rarityColors.default;
 
+  // Mostrar cartas de la colección
+  const collectionCards = getCardsByCollection(creature.collection);
+  cardCollectionCards.innerHTML = ""; // Limpiar cartas anteriores
 
-function displayCardsInEncyclopedia() {
-  const encyclopediaContainer = document.querySelector(".encyclopedia-container");
-  
-  cards.forEach(card => {
+  collectionCards.forEach((card) => {
     const cardElement = document.createElement("div");
-    cardElement.classList.add("card");
-    cardElement.innerHTML = `
-      <img src="${card.image}" alt="${card.name}">
-      <div class="card-name">${card.name}</div>
-      <div class="card-rarity">${card.rarity}</div>
-    `;
-    
-    // Añadir evento al hacer clic en la carta
-    cardElement.addEventListener('click', () => showCardDetails(card));
-    
-    encyclopediaContainer.appendChild(cardElement);
+    cardElement.className = "collection-card";
+
+    // Aplicar desenfoque si no tienes la carta
+    if (!encyclopedia.some((item) => item.name === card.name)) {
+      cardElement.classList.add("blurred");
+      cardElement.innerHTML = `
+        <img src="${card.image}" alt="${card.name}">
+        <div class="collection-card-name">???</div>
+      `;
+      cardElement.addEventListener("click", () => {
+        alert(`Esta carta se desbloquea así: ${card.unlockInfo || "Información no disponible"}`);
+      });
+    } else {
+      cardElement.innerHTML = `
+        <img src="${card.image}" alt="${card.name}">
+        <div class="collection-card-name">${card.name}</div>
+      `;
+      cardElement.addEventListener("click", () => {
+        showCardDetails(card);
+      });
+    }
+
+    cardCollectionCards.appendChild(cardElement);
   });
 }
 
-window.onload = () => {
-  displayCardsInEncyclopedia();
-};
+
+
+function getCardsByCollection(collection) {
+  return creatures.filter((creature) => creature.collection === collection);
+}
+
 
 // Función para seleccionar una carta aleatoria
 function gachaPull() {
@@ -95,28 +143,28 @@ function gachaPull() {
 
 
 function summonCards() {
-  // Activar partículas "juicy" con explosión que se difumina al final
   triggerJuicyParticlesWithFadingExplosion();
 
-  // Limpiar cartas previas y retrasar la aparición
   document.querySelector(".card-container").innerHTML = "";
 
-  // Retrasar la aparición de las cartas (por ejemplo, 2.5 segundos)
   setTimeout(() => {
     for (let i = 0; i < 3; i++) {
       const pulledCard = gachaPull();
-      const cardDiv = document.createElement("div");
-      cardDiv.className = `card ${pulledCard.rarity}`;
-      cardDiv.innerHTML = `
-        <img src="${pulledCard.image}" alt="${pulledCard.name}">
-        <div class="card-name">${pulledCard.name}</div>
-        <div class="card-rarity">${pulledCard.rarity.toUpperCase()}</div>
-      `;
-      document.querySelector(".card-container").appendChild(cardDiv);
-      addToEncyclopedia(pulledCard);
+      if (pulledCard) {
+        const cardDiv = document.createElement("div");
+        cardDiv.className = `card ${pulledCard.rarity}`;
+        cardDiv.innerHTML = `
+          <img src="${pulledCard.image}" alt="${pulledCard.name}">
+          <div class="card-name">${pulledCard.name}</div>
+          <div class="card-rarity">${pulledCard.rarity.toUpperCase()}</div>
+        `;
+        document.querySelector(".card-container").appendChild(cardDiv);
+        addToEncyclopedia(pulledCard);
+      }
     }
-  }, 2500); // Retraso sincronizado con la desaparición de la explosión
+  }, 2500);
 }
+
 
 function triggerJuicyParticlesWithFadingExplosion() {
   const particlesConfig = {
@@ -206,7 +254,7 @@ function updateEncyclopedia() {
   container.innerHTML = "";
   encyclopedia.forEach((creature) => {
     const card = document.createElement("div");
-    card.className = `card ${creature.rarity}`;
+    card.className =` card ${creature.rarity}`;
     card.innerHTML = `
       <img src="${creature.image}" alt="${creature.name}">
       <div class="card-name">${creature.name}</div>
@@ -228,7 +276,7 @@ particlesJS('particles-js', {
         }
       },
       color: {
-        value: "#ff4500"  // Color de las partículas
+        value: "#ff4500"  
       },
       shape: {
         type: "circle",
@@ -327,7 +375,7 @@ particlesJS('particles-js', {
             random: true
           },
           size: {
-            value: 5,
+            value: 3,
             random: true
           },
           line_linked: {
@@ -345,3 +393,8 @@ particlesJS('particles-js', {
       });
       summonCards();
     });
+
+    window.onload = () => {
+      loadCards(); // Carga las cartas al cargar la página
+    };
+    

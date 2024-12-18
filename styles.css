@@ -20,11 +20,6 @@ header h1 {
   margin: 0;
 }
 
-.hidden {
-  display: none;
-}
-
-
 nav {
   margin-top: 10px;
 }
@@ -46,6 +41,7 @@ nav button:hover {
 main{
   background-color:#355579;
   height: 100%;
+  display: block;
 }
 
 main section {
@@ -61,14 +57,12 @@ section.hidden {
   opacity: 0;
 }
 
-#mapa{
-  width: 100%;
-  max-width: 800px;
+#mapa {
+  width: 100%; /* Ajusta el tamaño según sea necesario */
+  max-width: 600px;
   margin: 20px auto;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+  z-index: -1;
 }
 
 
@@ -82,21 +76,19 @@ section.hidden {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .card {
-  background: #2c3e50;
   border-radius: 10px;
   padding: 15px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
+  width: 120px;
+  margin-top: 10mm;
 }
 
-.card img {
-  max-width: 100px;
-  border-radius: 5px;
-}
 
 .card:hover {
   transform: scale(1.05);
@@ -104,7 +96,7 @@ section.hidden {
 
 .card-name {
   font-size: 1.2em;
-  margin: 10px 0;
+  margin-bottom: 6mm;
 }
 
 
@@ -121,6 +113,20 @@ filtros en la enciclopedia
 JUICYYYYYYY 
 
 */
+
+cardDetailsSection.rare {
+  background: #2980b9;
+}
+
+cardDetailsSection.epic {
+  background: #e74c3c;
+}
+
+cardDetailsSection.legendary {
+  background: #f1c40f;
+  color: #2c3e50;
+  font-weight: bold;
+}
 
 .card.uncommon {
   background: #8e44ad;
@@ -139,14 +145,13 @@ JUICYYYYYYY
   color: #2c3e50;
   font-weight: bold;
 }
-
 .encyclopedia-container {
   display: flex;
 	flex-wrap: wrap;
-	align-items: space-between;
-	justify-content: center;
-	margin: 0 auto;
-	max-width: 1200px;
+	justify-content:flex-start;
+	max-width: 1000px;
+  position: relative;
+  bottom: 70mm;
 }
 
 .encyclopedia-container .card {
@@ -155,6 +160,7 @@ JUICYYYYYYY
 	margin: 10px;
 	padding: 20px;
 	text-align: center;
+  cursor: pointer;
 }
 
 #card-details {
@@ -216,7 +222,6 @@ JUICYYYYYYY
 #card-rarity {
   font-size: 1.2em;
   font-weight: bold;
-  color: #fff;
   background-color: #f39c12;
   padding: 5px 10px;
   border-radius: 5px;
@@ -240,12 +245,7 @@ button:focus {
 }
 
 
-.card img {
-  width: 80px; 
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 8px;
-}
+
 
 .card-name {
   font-size: 14px;
@@ -255,15 +255,14 @@ button:focus {
 
 .card-rarity {
   font-size: 12px;
-  color: #000000;
 }
-
 
 #map {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  position: relative;
 }
 
 .level {
@@ -304,6 +303,12 @@ button:focus {
   display: none;
 }
 
+.pull-button {
+  position: fixed; /* Fija su posición relativa a la ventana */
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 #special-effects.visible {
   display: block;
   animation: pulse 1.5s infinite;
@@ -352,4 +357,120 @@ button:focus {
   #particles-js {
     height: 150px; 
   }
+}
+
+.collection-card {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  width: 100px;
+}
+
+.collection-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.blurred {
+  filter: blur(5px);
+  opacity: 0.5;
+}
+
+.collection-card-name {
+  font-size: 0.9em;
+  margin-top: 5px;
+  color: #333;
+}
+
+#card-collection-card {
+  width: 10mm;
+}
+
+#card-collection-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.card img {
+  width: 100%; 
+  height: auto; 
+  object-fit: contain; 
+  aspect-ratio: 1 / 1; 
+  margin-bottom: 8px;
+  background-color: #fff; 
+  padding: 5px; 
+  border-radius: 5px; 
+}
+
+.blurred {
+  filter: blur(5px);
+  opacity: 0.6;
+  pointer-events: none; /* Evita que se pueda hacer clic en cartas bloqueadas */
+}
+
+.blurred img {
+  opacity: 0.5; /* Hace que las imágenes se vean desactivadas */
+}
+
+#story-content {
+  text-align: center;
+  padding: 20px;
+}
+
+#area {
+  position: relative;
+  bottom: 115mm;
+  right: 52mm;
+  z-index: 1;
+  cursor: pointer;
+}
+
+#battle-container {
+  background: url('map/cosmic.jpg') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 400px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.battle-button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.battle-button:hover {
+  background-color: darkred;
+}
+
+#npc-container, #instructions, #game-over, #victory, #character-helper {
+  margin-top: 20px;
+}
+
+
+#character-helper {
+  position: absolute;
+  top: 20%;
+  right: 10px;
+  width: 150px;
+  text-align: center;
+}
+
+#character-helper img {
+  width: 100%;
+}
+
+#character-helper p {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
 }

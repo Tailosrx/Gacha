@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gacha Game</title>
+    <title>My Universe</title>
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
-      <h1>Gacha Game</h1>
+      <h1>My Universe</h1>
       <nav>
         <button onclick="showSection('map')">Tiradas</button>
         <button onclick="showSection('encyclopedia')">Enciclopedia</button>
@@ -20,7 +20,8 @@
     <main>
       <!-- Sección del mapa con el gacha -->
       <section id="map">
-        <button id="pull-button">Tirar Cartas</button>
+       <!-- <button id="pull-button">Tirar Cartas</button> -->
+        <img src="chests/chest_Duramesh.png" style="width: 190px; cursor: pointer;" id="pull-button">
         <div id="particles-js"></div>
         <div class="card-container"></div>
       </section>
@@ -44,17 +45,57 @@
             <p id="card-story"></p>
           </div>
         </div>
+        <div id="card-collection-container">
+          <h4>Cartas de la colección</h4>
+          <div id="card-collection-cards" class="card-grid"></div>
+        </div>
       </section>
 
-      <!-- Sección del modo historia -->
       <section id="story-content" class="hidden">
         <h2>Modo Historia</h2>
         <p id="story-text">
           Bienvenido al modo historia. ¡Comienza tu aventura!
         </p>
-        <img src="map/map_Duramesh.png" id="mapa" alt="Mapa de Duramesh" />
+        
+
+        <div id="map-container">
+          <img src="map/map_Duramesh.png" id="mapa" usemap="#duramesh-map" alt="Mapa de Duramesh" />
+          <!-- Área para la primera misión -->
+          <img src="map/area.svg" id="area" href="javascript:void(0);" onclick="startTutorial()">
+          <!-- Más áreas de misión -->
+        </div>
+
         <button onclick="nextChallenge()">Siguiente</button>
-      </section>
+    </section>
+
+      <!-- Personaje ayudante -->
+      <div id="character-helper" class="hidden">
+        <img src="assets/rambi.webp" alt="Personaje Ayudante" />
+        <p id="helper-text">¡Hola! Soy tu guía. Haz clic en el mapa para comenzar.</p>
+    </div>
+
+    <!-- Ventana de Game Over -->
+    <div id="game-over" class="hidden">
+        <h3>Game Over</h3>
+        <p>¡Has perdido! Vuelve a intentarlo.</p>
+        <button onclick="restartGame()">Reiniciar Juego</button>
+    </div>
+
+    <!-- Ventana de Victoria -->
+    <div id="victory" class="hidden">
+        <h3>¡Victoria!</h3>
+        <p>¡Has completado el tutorial! Estás listo para nuevas aventuras.</p>
+        <button onclick="restartGame()">Reiniciar Juego</button>
+    </div>
+
+    <!-- Contenedor de la batalla -->
+    <div id="battle-container" class="hidden">
+        <h2>¡Comienza la Batalla!</h2>
+        <p id="battle-text">Enfréntate a tu primer enemigo para aprender las mecánicas de combate.</p>
+        <button class="battle-button" onclick="attackEnemy()">Atacar</button>
+        <button class="battle-button" onclick="defend()">Defender</button>
+    </div>
+      
     </main>
   </body>
 </html>

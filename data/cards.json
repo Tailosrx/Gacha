@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Cristal",
+    "rarity": "legendary",
+    "image": "/assets/cristal.png",
+    "collection": "Destellos",
+    "unlockInfo": "Derrota a Eustaquio",
+    "discovered": false
+  },
+  {
+    "name": "Huevo Dorado",
+    "rarity": "legendary",
+    "image": "/assets/egg.png",
+    "collection": "Recordando a Waxy",
+    "unlockInfo": "Completa la coleccion de Recordando a Waxy",
+    "discovered": true
+  },
+  {
+    "name": "Lolo",
+    "rarity": "epic",
+    "image": "/assets/lolo.png",
+    "collection": "La Leyenda de Thunder",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Misterio",
+    "rarity": "rare",
+    "image": "/assets/misterio.png",
+    "collection": "La Leyenda de Thunder",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Lily",
+    "rarity": "rare",
+    "image": "/assets/lily.png",
+    "collection": "La Leyenda de Thunder",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Dionis",
+    "rarity": "rare",
+    "image": "/assets/dionis.png",
+    "collection": "Uno con la Libertad",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Tarko",
+    "rarity": "uncommon",
+    "image": "/assets/tarko.png",
+    "collection": "La Leyenda de Thunder",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Will",
+    "rarity": "uncommon",
+    "image": "/assets/will.png",
+    "collection": "La Leyenda de Thunder",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Waxy Funeral",
+    "rarity": "uncommon",
+    "image": "/assets/goblin.png",
+    "collection": "Recordando a Waxy",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Eustaquio",
+    "rarity": "uncommon",
+    "image": "/assets/draco.png",
+    "collection": "La Leyenda de Thunder",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Kijon III",
+    "rarity": "common",
+    "image": "/assets/kijon.png",
+    "collection": "La Leyenda de Thunder",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Waxy",
+    "rarity": "common",
+    "image": "/assets/waxy.png",
+    "collection": "Recordando a Waxy",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Tetico",
+    "rarity": "common",
+    "image": "/assets/tetico.png",
+    "collection": "Recordando a Waxy",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Winter",
+    "rarity": "rare",
+    "image": "/assets/winter.webp",
+    "collection": "Mascotas",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": true
+  },
+  {
+    "name": "Tigri",
+    "rarity": "rare",
+    "image": "assets/tigri.webp",
+    "collection": "Mascotas",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": true
+  },
+  {
+    "name": "Joy",
+    "rarity": "common",
+    "image": "assets/joy.png",
+    "collection": "Cuna de la Esperanza",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  }
+]
