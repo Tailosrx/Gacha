@@ -1,12 +1,33 @@
 
 
-function showSection(section) {
-  const sections = document.querySelectorAll('main section');
-  sections.forEach(sec => sec.classList.add('hidden'));
 
-  const activeSection = document.getElementById(section);
-  activeSection.classList.remove('hidden');
+function showSection(sectionId) {
+  // Ocultar todas las secciones
+  document.querySelectorAll("main > section").forEach((section) => {
+    section.classList.add("hidden");
+  });
+
+  // Mostrar la sección seleccionada
+  document.getElementById(sectionId).classList.remove("hidden");
+
+  // Mostrar/ocultar elementos específicos de la sección "map"
+  const isMapSection = sectionId === "map";
+  document.getElementById("daily-missions").style.display = isMapSection ? "block" : "none";
+  document.getElementById("card-of-the-day").style.display = isMapSection ? "block" : "none";
+
+  // Mostrar/ocultar elementos específicos de la enciclopedia
+  const isEncyclopediaSection = sectionId === "encyclopedia";
+  const encyclopediaContainer = document.querySelector(".encyclopedia-container");
+  if (encyclopediaContainer) {
+    encyclopediaContainer.style.display = isEncyclopediaSection ? "flex" : "none";
+  }
 }
+
+// Asegurar que esté disponible en el contexto global
+window.showSection = showSection;
+
+
+
 
 const encyclopedia = [];
 
@@ -113,25 +134,37 @@ function showCardDetails(creature) {
   });
 }
 
-
-
 function getCardsByCollection(collection) {
   return creatures.filter((creature) => creature.collection === collection);
 }
 
+const probabilities = {
+  legendary: 1,
+  epic: 3,
+  rare: 15,
+  uncommon: 30,
+  common: 49,
+};
+
+let playerCoins = 35;
+
+function updateCoins() {
+  document.getElementById("coins").textContent = playerCoins;
+}
 
 // Función para seleccionar una carta aleatoria
 function gachaPull() {
-  const probabilities = {
-    legendary: 1,
-    epic: 5,
-    rare: 15,
-    uncommon: 30,
-    common: 49,
-  };
+  const resultElement = document.getElementById("result");
 
+  if (playerCoins < 10) {
+    alert("No tienes suficientes monedas para abrir el cofre.");
+    return null; // Salir si no hay suficientes monedas
+  }
+
+  // Generar resultado de la tirada
   const random = Math.random() * 100;
   let sum = 0;
+
   for (const [rarity, chance] of Object.entries(probabilities)) {
     sum += chance;
     if (random <= sum) {
@@ -142,15 +175,24 @@ function gachaPull() {
 }
 
 
-function summonCards() {
+export function summonCards() {
+  if (playerCoins < 10) {
+    alert("No tienes suficientes monedas para abrir el cofre.");
+    return; // Salir si no hay suficientes monedas
+  }
+
   triggerJuicyParticlesWithFadingExplosion();
 
-  document.querySelector(".card-container").innerHTML = "";
+  const cardContainer = document.querySelector(".card-container");
+  cardContainer.innerHTML = ""; // Limpia el contenedor antes de mostrar las nuevas cartas
 
   setTimeout(() => {
+    const pulledCards = [];
     for (let i = 0; i < 3; i++) {
       const pulledCard = gachaPull();
       if (pulledCard) {
+        pulledCards.push(pulledCard);
+
         const cardDiv = document.createElement("div");
         cardDiv.className = `card ${pulledCard.rarity}`;
         cardDiv.innerHTML = `
@@ -158,11 +200,17 @@ function summonCards() {
           <div class="card-name">${pulledCard.name}</div>
           <div class="card-rarity">${pulledCard.rarity.toUpperCase()}</div>
         `;
-        document.querySelector(".card-container").appendChild(cardDiv);
-        addToEncyclopedia(pulledCard);
+        cardContainer.appendChild(cardDiv); // Añade la carta al contenedor
+        addToEncyclopedia(pulledCard); // Añade la carta a la enciclopedia
+
+        checkCardOfTheDay(pulledCard); // Verificar Carta del Día
       }
     }
-  }, 2500);
+
+    checkMissions(pulledCards); // Verificar progreso de las misiones
+    playerCoins -= 10; // Restar monedas después de las tiradas
+    updateCoins();
+  }, 2500); // Tiempo para permitir la animación de partículas
 }
 
 
@@ -397,4 +445,80 @@ particlesJS('particles-js', {
     window.onload = () => {
       loadCards(); // Carga las cartas al cargar la página
     };
+
+    let dailyMissions = [
+      {id: 1, description: "Obten dos cartas Raras",  objetivo: 2, progreso: 0, completed: false, reward: 15 },
+      {id: 2, description: "Haz una tirada",  objetivo: 1, progreso: 0, completed: false, reward: 10 },
+    ];
+
+    let misionesActive = [];
+    
+    let cardOfTheDay = {
+      name: "Carta del Día",
+      rarity: "legendary", 
+      image: "path/to/card-image.jpg", 
+      reward: 10,
+    };
+    
+    // Actualiza las misiones en la interfaz
+    function updateMissions() {
+      const missionsContainer = document.getElementById("missions");
+      missionsContainer.innerHTML = ""; // Limpia el contenedor
+
+      dailyMissions.forEach((mission, index) => {
+        const missionElement = document.createElement("div");
+        missionElement.className = `mission ${mission.completed ? "completed" : ""}`;
+        missionElement.innerHTML = `
+          <h3 style="color: black">${mission.description}</h3>
+          <div class="mission-progress">
+            <p style="color: black"> ${mission.completed} / };"></div>
+          </div>
+          <button ${mission.completed ? "disabled" : ""} onclick="claimMission(${index})">
+            ${mission.completed ? "Completada" : `Reclamar (${mission.reward} monedas)`}
+          </button>
+        `;
+        missionsContainer.appendChild(missionElement);
+
+        // Si la misión está completada, aplica la animación
+        if (mission.completed) {
+          setTimeout(() => {
+            missionElement.querySelector('.progress-bar').style.width = '100%';
+          }, 100); // Retraso para animar la barra de progreso
+        }
+      });
+    }
+    
+    // Verifica el progreso de las misiones
+    function claimMission(index) {
+      if (dailyMissions[index].completed) return;
+    
+      dailyMissions[index].completed = true;
+      playerCoins += dailyMissions[index].reward;
+      updateCoins();
+      updateMissions();
+    }
+
+    function checkMissions(pulledCards) {
+      // Verificar si se obtuvieron dos cartas raras
+      const rareCards = pulledCards.filter(card => card.rarity === "rare").length;
+      if (rareCards >= 2) {
+        dailyMissions[0].completed = true;
+      }
+    
+      // Marcar la tirada como completada
+      dailyMissions[1].completed = true;
+    
+      updateMissions();
+    }
+    updateMissions();
+    
+    // Funcionalidad de la Carta del Día
+    function checkCardOfTheDay(card) {
+      if (card.name === cardOfTheDay.name && card.rarity === cardOfTheDay.rarity) {
+        alert(`¡Has conseguido la ${cardOfTheDay.name}! Obtienes ${cardOfTheDay.reward} monedas.`);
+        playerCoins += cardOfTheDay.reward;
+        updateCoins();
+      }
+    }
+
     

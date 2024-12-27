@@ -4,15 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Universe</title>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-    <script defer src="script.js"></script>
+    <link rel="icon" href="/logo.png" type="image/x-icon"/>
+    <script  defer src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script type="module" defer src="story.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
+<!--
+  
+ - Cofre carta al reves y vas una a una girandola
+ - 
+
+-->
   <body>
     <header>
       <h1>My Universe</h1>
+      <p>Monedas: <span id="coins">35</span></p>
       <nav>
-        <button onclick="showSection('map')">Tiradas</button>
+        <button onclick="showSection('map')" id="tirada">Tiradas</button>
         <button onclick="showSection('encyclopedia')">Enciclopedia</button>
         <button onclick="showSection('story-content')">Modo Historia</button>
       </nav>
@@ -24,7 +33,25 @@
         <img src="chests/chest_Duramesh.png" style="width: 190px; cursor: pointer;" id="pull-button">
         <div id="particles-js"></div>
         <div class="card-container"></div>
+
+
+        <div id="daily-missions">
+          <h2 style="color: black">Misiones Diarias</h2>
+          <div id="missions"></div>
+        </div>
+        
+        <div id="card-of-the-day">
+          <h2>Carta del Día</h2>
+          <div class="card">
+            <img src="assets/dionis.png" alt="Carta del Día">
+            <div class="card-name">Dionis</div>
+            <div class="card-rarity">rare</div>
+            <p>¡Obtén esta carta para ganar 10 monedas extra!</p>
+          </div>
+        </div>
       </section>
+
+     
 
       <!-- Sección de la enciclopedia -->
       <section id="encyclopedia" class="hidden">
@@ -57,45 +84,33 @@
           Bienvenido al modo historia. ¡Comienza tu aventura!
         </p>
         
-
-        <div id="map-container">
-          <img src="map/map_Duramesh.png" id="mapa" usemap="#duramesh-map" alt="Mapa de Duramesh" />
-          <!-- Área para la primera misión -->
-          <img src="map/area.svg" id="area" href="javascript:void(0);" onclick="startTutorial()">
-          <!-- Más áreas de misión -->
+        <div id="map-container" style="width: 1400px; height: auto;">
+          <svg id="map-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+            <!-- Fondo del mapa -->
+            <image href="map/map_Duramesh.png" width="800" height="600" />
+        
+            <!-- Nodo interactivo con imagen -->
+            <g class="map-node" onclick="startMission(1)">
+              <!-- Imagen del nodo -->
+              <image href="logo.png" x="100" y="200" width="40" height="40" />
+              <!-- Círculo interactivo -->
+              <circle cx="120" cy="220" r="20" fill="rgba(255, 255, 255, 0.3)" />
+            </g>
+          </svg>
         </div>
-
-        <button onclick="nextChallenge()">Siguiente</button>
-    </section>
-
-      <!-- Personaje ayudante -->
-      <div id="character-helper" class="hidden">
-        <img src="assets/rambi.webp" alt="Personaje Ayudante" />
-        <p id="helper-text">¡Hola! Soy tu guía. Haz clic en el mapa para comenzar.</p>
-    </div>
-
-    <!-- Ventana de Game Over -->
-    <div id="game-over" class="hidden">
-        <h3>Game Over</h3>
-        <p>¡Has perdido! Vuelve a intentarlo.</p>
-        <button onclick="restartGame()">Reiniciar Juego</button>
-    </div>
-
-    <!-- Ventana de Victoria -->
-    <div id="victory" class="hidden">
-        <h3>¡Victoria!</h3>
-        <p>¡Has completado el tutorial! Estás listo para nuevas aventuras.</p>
-        <button onclick="restartGame()">Reiniciar Juego</button>
-    </div>
-
-    <!-- Contenedor de la batalla -->
-    <div id="battle-container" class="hidden">
-        <h2>¡Comienza la Batalla!</h2>
-        <p id="battle-text">Enfréntate a tu primer enemigo para aprender las mecánicas de combate.</p>
-        <button class="battle-button" onclick="attackEnemy()">Atacar</button>
-        <button class="battle-button" onclick="defend()">Defender</button>
-    </div>
+        
+      </section>
       
+    <div id="overlay" class="overlay"></div>
+      <div id="rambi-container">
+        <img src="assets/rambi.webp" alt="Rambi" id="rambi-img" />
+        <p id="rambi-text" style="color: white;">¡Hola Joven! Soy Rambi. Bienvenido a mi universo.</p>
+        <button id="rambi-next-btn">Siguiente</button>
+        <button id="skipTutorial" style="position: fixed; top: 10px; right: 10px; z-index: 1000;">Omitir Tutorial</button>
+
+      </div>
+    </div>
     </main>
+    <script type="module" defer src="script.js"></script>
   </body>
 </html>

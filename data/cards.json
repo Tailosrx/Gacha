@@ -16,8 +16,24 @@
     "discovered": true
   },
   {
-    "name": "Lolo",
+    "name": "Gelmir",
     "rarity": "epic",
+    "image": "/assets/gelmir.webp",
+    "collection": "Sirvientes de Seris",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Szethran",
+    "rarity": "epic",
+    "image": "/assets/szethran.webp",
+    "collection": "Protector de los Oradores",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Lolo",
+    "rarity": "rare",
     "image": "/assets/lolo.png",
     "collection": "La Leyenda de Thunder",
     "unlockInfo": "Abre cofres de Duramesh",
@@ -40,10 +56,42 @@
     "discovered": false
   },
   {
+    "name": "Winter",
+    "rarity": "rare",
+    "image": "/assets/winter.webp",
+    "collection": "Mascotas",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": true
+  },
+  {
+    "name": "Tigri",
+    "rarity": "rare",
+    "image": "assets/tigri.webp",
+    "collection": "Mascotas",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": true
+  },
+  {
+    "name": "Safi",
+    "rarity": "rare",
+    "image": "assets/safi.webp",
+    "collection": "Mascotas",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": true
+  },
+  {
     "name": "Dionis",
     "rarity": "rare",
     "image": "/assets/dionis.png",
     "collection": "Uno con la Libertad",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Azura",
+    "rarity": "rare",
+    "image": "/assets/azura.webp",
+    "collection": "Nihilismo",
     "unlockInfo": "Abre cofres de Duramesh",
     "discovered": false
   },
@@ -56,25 +104,17 @@
     "discovered": false
   },
   {
-    "name": "Will",
+    "name": "Eustaquio",
     "rarity": "uncommon",
-    "image": "/assets/will.png",
+    "image": "/assets/draco.png",
     "collection": "La Leyenda de Thunder",
     "unlockInfo": "Abre cofres de Duramesh",
     "discovered": false
   },
   {
-    "name": "Waxy Funeral",
+    "name": "Will",
     "rarity": "uncommon",
-    "image": "/assets/goblin.png",
-    "collection": "Recordando a Waxy",
-    "unlockInfo": "Abre cofres de Duramesh",
-    "discovered": false
-  },
-  {
-    "name": "Eustaquio",
-    "rarity": "uncommon",
-    "image": "/assets/draco.png",
+    "image": "/assets/will.png",
     "collection": "La Leyenda de Thunder",
     "unlockInfo": "Abre cofres de Duramesh",
     "discovered": false
@@ -96,6 +136,38 @@
     "discovered": false
   },
   {
+    "name": "Waxy Funeral",
+    "rarity": "uncommon",
+    "image": "/assets/goblin.png",
+    "collection": "Recordando a Waxy",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Elara",
+    "rarity": "uncommon",
+    "image": "assets/elara.webp",
+    "collection": "Seres Nenufaristas",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Mauricio Colmenero",
+    "rarity": "uncommon",
+    "image": "assets/mauricio.webp",
+    "collection": "En la Gran Forja!",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Darian",
+    "rarity": "uncommon",
+    "image": "assets/darian.webp",
+    "collection": "Comerciantes de Ronamuf",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
     "name": "Tetico",
     "rarity": "common",
     "image": "/assets/tetico.png",
@@ -104,20 +176,20 @@
     "discovered": false
   },
   {
-    "name": "Winter",
-    "rarity": "rare",
-    "image": "/assets/winter.webp",
-    "collection": "Mascotas",
+    "name": "Machu-Pichu",
+    "rarity": "common",
+    "image": "/assets/machu.webp",
+    "collection": "En la Gran Forja!",
     "unlockInfo": "Abre cofres de Duramesh",
-    "discovered": true
+    "discovered": false
   },
   {
-    "name": "Tigri",
-    "rarity": "rare",
-    "image": "assets/tigri.webp",
-    "collection": "Mascotas",
+    "name": "Aconcagua",
+    "rarity": "common",
+    "image": "/assets/aconcagua.webp",
+    "collection": "En la Gran Forja!",
     "unlockInfo": "Abre cofres de Duramesh",
-    "discovered": true
+    "discovered": false
   },
   {
     "name": "Joy",
@@ -126,5 +198,63 @@
     "collection": "Cuna de la Esperanza",
     "unlockInfo": "Abre cofres de Duramesh",
     "discovered": false
+  },
+  {
+    "name": "Weiki",
+    "rarity": "common",
+    "image": "assets/weiki.webp",
+    "collection": "Transformados por DooWap",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Lolo (Weiki)",
+    "rarity": "common",
+    "image": "assets/Weiki_Lolo.webp",
+    "collection": "Transformados por DooWap",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Misterio (Weiki)",
+    "rarity": "common",
+    "image": "assets/weiki_Misterio.webp",
+    "collection": "Transformados por DooWap",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Rodrick",
+    "rarity": "common",
+    "image": "assets/rodrick.webp",
+    "collection": "Peligros Forestales",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Araña de la Fruta",
+    "rarity": "common",
+    "image": "assets/fruit.webp",
+    "collection": "Peligros Forestales",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Fleck",
+    "rarity": "common",
+    "image": "/assets/fleck.webp",
+    "collection": "Comerciantes de Ronamuf",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
+  },
+  {
+    "name": "Hazel",
+    "rarity": "common",
+    "image": "/assets/hazel.webp",
+    "collection": "Comerciantes de Ronamuf",
+    "unlockInfo": "Abre cofres de Duramesh",
+    "discovered": false
   }
+  
+
 ]
